@@ -7,7 +7,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        List<String> taskList = new ArrayList<>();
+        List<Task> taskList = new ArrayList<>();
 
 
         System.out.println("Добро пожаловать!");
@@ -21,22 +21,38 @@ public class Main {
                     """);
 
             int menu = scanner.nextInt();
+            scanner.nextLine();
 
             switch (menu) {
                 case 1:
                     System.out.println("Введите название задачи: ");
-                    String addTask = scanner.next();
-                    taskList.add(addTask);
+                    String addTask = scanner.nextLine();
+                    taskList.add(new Task(addTask));
                     System.out.println("Задача успешно добавлена!");
                     break;
                 case 2:
                     System.out.println("Все задачи: \n");
-                    System.out.println(taskList);
+                    for (int i = 0; i < taskList.size(); i++) {
+                        System.out.println(i + ": " + taskList.get(i));
+                    }
+                    break;
                 case 3:
+                    System.out.println("Все задачи: \n");
+                    for (int i = 0; i < taskList.size(); i++) {
+                        System.out.println(i + ": " + taskList.get(i));
+                    }
 
+                    System.out.println("Какую задачу вы выполнили?:\n");
+                    int completed = scanner.nextInt();
+                    taskList.get(completed).complete();
+                    System.out.println("Задача выполнена!");
+                    break;
                 case 4:
                     System.out.println("Все задачи: \n");
-                    System.out.println(taskList);
+                    for (int i = 0; i < taskList.size(); i++) {
+                        System.out.println(i + ": " + taskList.get(i));
+                    }
+
                     System.out.println("Какую задачу вы бы хотели удалить?");
                     int removeTask = scanner.nextInt();
                     taskList.remove(removeTask);
