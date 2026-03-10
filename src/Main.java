@@ -11,13 +11,14 @@ public class Main {
 
 
         System.out.println("Добро пожаловать!");
-        while(true) {
+        while (true) {
             System.out.println("""
                     Что бы вы хотели сделать?:
                     1. Добавить задачу
                     2. Показать задачи
                     3. Отметить задачу выполненной
                     4. Удалить задачу
+                    5. Выход
                     """);
 
             int menu = scanner.nextInt();
@@ -56,6 +57,11 @@ public class Main {
                     System.out.println("Какую задачу вы бы хотели удалить?");
                     int removeTask = scanner.nextInt();
                     taskList.remove(removeTask);
+                    break;
+                case 5:
+                    return;
+                default:
+                    System.out.println("Неверный ввод. Попробуйте еще раз!");
                     break;
             }
         }
