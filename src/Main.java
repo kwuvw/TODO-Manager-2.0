@@ -1,13 +1,13 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
 
-        List<Task> taskList = new ArrayList<>();
+        ArrayList<Task> taskList = Task.loadTasksFromFile();
 
 
         System.out.println("Добро пожаловать!");
@@ -29,6 +29,7 @@ public class Main {
                     System.out.println("Введите название задачи: ");
                     String addTask = scanner.nextLine();
                     taskList.add(new Task(addTask));
+                    Task.saveTaskInFile(taskList);
                     System.out.println("Задача успешно добавлена!");
                     break;
                 case 2:
@@ -50,9 +51,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Все задачи: \n");
-                    for (int i = 0; i < taskList.size(); i++) {
-                        System.out.println(i + ": " + taskList.get(i));
-                    }
+                    Task.printTasksFromFile(taskList);
 
                     System.out.println("Какую задачу вы бы хотели удалить?");
                     int removeTask = scanner.nextInt();
